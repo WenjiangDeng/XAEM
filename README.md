@@ -19,16 +19,24 @@ X matrix is an essential object for bias correction and isoform quantification (
 ## 2. Download and installation
 If you use the binary verion of XAEM (recommended):
 
-Download the latest binary version from XAEM website:
+- Download the latest binary version from XAEM website:
+```sh
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/XAEM-binary-0.1.0.tar.gz
-Uncompress to folder
+```
+- Uncompress to folder
+```sh
 tar -xzvf XAEM-binary-0.1.0.tar.gz
-Move to the XAEM_home directory and do configuration for XAEM
+```
+- Move to the XAEM_home directory and do configuration for XAEM
+```sh
 cd XAEM-binary-0.1.0
 bash configure.sh
-Add paths of lib folder and bin folder to LD_LIBRARY_PATH and PATH
+```
+- Add paths of lib folder and bin folder to LD_LIBRARY_PATH and PATH
+```sh
 export LD_LIBRARY_PATH=/path/to/XAEM-binary-0.1.0/lib:$LD_LIBRARY_PATH
 export PATH=/path/to/XAEM-binary-0.1.0/bin:$PATH
+```
 If you want to build XAEM from sources:
 
 Download XAEM from XAEM website and move to XAEM_home directory
