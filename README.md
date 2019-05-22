@@ -1,8 +1,6 @@
-####################
-# XAEM: a novel method for isoform quantification
-###################
 
-You can also check our website at http://fafner.meb.ki.se/biostatwiki/xaem/ for more information to use XAEM.
+# XAEM: a novel method for isoform quantification
+
 
 ## 1. Introduction
 This document shows how to use XAEM to quantify isoform expression for multiple samples.
@@ -118,4 +116,7 @@ Rscript Create_count_matrix.R workdir=$PWD/XAEM_project core=8
 Estimate isoform expression using AEM algorithm
 Rscript AEM_update_X_beta.R workdir=$PWD/XAEM_project core=8
 cd XAEM_project
+
+You can also check our website at http://fafner.meb.ki.se/biostatwiki/xaem/ for more information to use XAEM.
+
 Reference:
