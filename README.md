@@ -1,6 +1,7 @@
 ####################
-# XAEM: a novel method for estimation of isoform expression
+# XAEM: a novel method for isoform quantification
 ###################
+
 You can also check our website at http://fafner.meb.ki.se/biostatwiki/xaem/ for more information to use XAEM.
 
 ## 1. Introduction
@@ -84,7 +85,7 @@ The output in this step will be saved in XAEM_isoform_expression.RData, which is
 Note: In XAEM pipeline we provide an extra step to merge the paralogs within the updated X matrix (please see our paper Section 2.2.3 and Section 2.3). The new X matrix is then used to estimate the final isoform expression. The paralog merging step produces more accurate estimation but can yield different sets of isoforms between different projects. If you want to run XAEM with this step in your project, you can simply add the "Merge=TRUE" parameter and run the command as below:
 
 Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8 Merge=TRUE
-5. A complete run of XAEM by copy and paste
+## 5. A complete run of XAEM by copy and paste
 This section shows the tutorial to run XAEM pipeline. We can test XAEM by just copy and paste of the example commands.
 
 Download the binary file of XAEM
