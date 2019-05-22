@@ -85,6 +85,7 @@ Create the design matrix using the eqClass.txt from last step. The design matrix
 ```sh
 Rscript XAEM_home/R/buildCRP.R in=/path/to/design_matrix/eqClass.txt out=/path/to/design_matrix/X_matrix.RData H=0.025
 ```
+
 ### 4.2 Generating the equivalence class table
 The command to generate equivalence class table for each sample is similar to "sailfish quant".  For example, we want to run XAEM for sample1 and sample2 with 4 cpus:
 ```sh
@@ -93,8 +94,9 @@ XAEM -i /path/to/TxIndexer_idx -l IU -1 s2_read1.fasta -2 s2_read2.fasta -p 4 -o
 If the data is compressed in gz format. We can combine with gunzip for decompression on-fly:
 XAEM -i /path/to/TxIndexer_idx -l IU -1 <(gunzip -c s1_read1.gz) -2 <(gunzip -c s1_read2.gz) -p 4 -o /path/to/XAEM_project/eqc_sample1
 XAEM -i /path/to/TxIndexer_idx -l IU -1 <(gunzip -c s2_read1.gz) -2 <(gunzip -c s2_read2.gz) -p 4 -o /path/to/XAEM_project/eqc_sample2
-### 4.3 Creating Y count matrix
 ```
+### 4.3 Creating Y count matrix
+
 After running XAEM there will be the output of equivalence class table for multiple samples. We then create the Y count matrix. For example, if we want to run XAEM parallelly using 8 cores, the command is:
 ```sh
 Rscript Create_count_matrix.R workdir=/path/to/XAEM_project core=8
@@ -107,8 +109,9 @@ Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8
 The output in this step will be saved in XAEM_isoform_expression.RData, which is the TPM value and raw read counts of multiple samples.
 
 Note: In XAEM pipeline we provide an extra step to merge the paralogs within the updated X matrix (please see our paper Section 2.2.3 and Section 2.3). The new X matrix is then used to estimate the final isoform expression. The paralog merging step produces more accurate estimation but can yield different sets of isoforms between different projects. If you want to run XAEM with this step in your project, you can simply add the "Merge=TRUE" parameter and run the command as below:
-
+```sh
 Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8 Merge=TRUE
+```
 ## 5. A complete run of XAEM by copy and paste
 This section shows the tutorial to run XAEM pipeline. We can test XAEM by just copy and paste of the example commands.
 
