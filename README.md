@@ -39,39 +39,52 @@ export PATH=/path/to/XAEM-binary-0.1.0/bin:$PATH
 ```
 If you want to build XAEM from sources:
 
-Download XAEM from XAEM website and move to XAEM_home directory
+Download XAEM from XAEM website and move to XAEM_home directory
+```sh
 wget https://github.com/WenjiangDeng/XAEM/raw/master/XAEM-source-0.1.0.zip
 unzip XAEM-source-0.1.0.zip
 cd XAEM-source-0.1.0
 bash configure.sh
+```
 XAEM requires information of flags from Sailfish including DFETCH_BOOST, DBOOST_ROOT, DTBB_INSTALL_DIR and DCMAKE_INSTALL_PREFIX. Please refer to the Sailfish website for more details of these flags.
 Do installation by the following command:
+```sh
 DBOOST_ROOT=/path/to/boostDir/ DTBB_INSTALL_DIR=/path/to/tbbDir/ DCMAKE_INSTALL_PREFIX=/path/to/expectedBuildDir bash install.sh
 After the installation is finished, remember to add the paths of lib folder and bin folder to LD_LIBRARY_PATH and PATH
 export LD_LIBRARY_PATH=/path/to/expectedBuildDir/lib:$LD_LIBRARY_PATH
 export PATH=/path/to/expectedBuildDir/bin:$PATH
+```
 Do not forget to replace "/path/to/" by your local path.
 
 ## 3. Index
 Index the reference file
+```sh
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/transcripts.fa.gz
 gunzip transcripts.fa.gz
 TxIndexer -t /path/to/transcripts.fa -o /path/to/TxIndexer_idx
+```
 ## 4. XAEM: step by step instruction and explanation
  ### 4.1 Construction of the X matrix (design matrix)
 This step constructs the X matrix required by the XAEM pipeline. For users working in human the X can be downloaded here: X_matrix.RData. It's recommended to make a project folder and put the file in that folder, e.g. /path/to/XAEM_project. The command is:
-
+```sh
 mkdir /path/to/XAEM_project
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/X_matrix.RData -P /path/to/XAEM_project
+```
 The steps to construct the design matrix are:
 
 Generate simulated RNA-seq data using the R package polyester
 ### R package polyester and Biostrings are required
+```sh
 Rscript XAEM_home/R/genPolyesterSimulation.R /path/to/transcripts.fa /path/to/design_matrix
+```
 Run GenTC to generate Transcript Cluster (TC) using simulated data. GenTC will generate an eqClass.txt file as the input for next step.
+```sh
 GenTC -i /path/to/TxIndexer_idx -l IU -1 /path/to/design_matrix/sample_01_1.fasta -2 /path/to/design_matrix/sample_01_2.fasta -p 8 -o /path/to/design_matrix
+```
 Create the design matrix using the eqClass.txt from last step. The design matrix will be saved in X_matrix.RData. "H=0.025" is the threshold to filter false positive neighbors in each X matrix. (Please see our paper Section 2.2.1)
+```sh
 Rscript XAEM_home/R/buildCRP.R in=/path/to/design_matrix/eqClass.txt out=/path/to/design_matrix/X_matrix.RData H=0.025
+```
  4.2 Generating the equivalence class table
 The command to generate equivalence class table for each sample is similar to "sailfish quant".  For example, we want to run XAEM for sample1 and sample2 with 4 cpus:
 XAEM -i /path/to/TxIndexer_idx -l IU -1 s1_read1.fasta -2 s1_read2.fasta -p 4 -o /path/to/XAEM_project/eqc_sample1
