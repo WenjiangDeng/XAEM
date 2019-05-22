@@ -73,7 +73,7 @@ wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/X_matrix.RData -P /path/to/XA
 The steps to construct the design matrix are:
 
 Generate simulated RNA-seq data using the R package polyester
-### R package polyester and Biostrings are required
+**R package polyester and Biostrings are required**
 ```sh
 Rscript XAEM_home/R/genPolyesterSimulation.R /path/to/transcripts.fa /path/to/design_matrix
 ```
@@ -85,18 +85,18 @@ Create the design matrix using the eqClass.txt from last step. The design matrix
 ```sh
 Rscript XAEM_home/R/buildCRP.R in=/path/to/design_matrix/eqClass.txt out=/path/to/design_matrix/X_matrix.RData H=0.025
 ```
- 4.2 Generating the equivalence class table
+### 4.2 Generating the equivalence class table
 The command to generate equivalence class table for each sample is similar to "sailfish quant".  For example, we want to run XAEM for sample1 and sample2 with 4 cpus:
 XAEM -i /path/to/TxIndexer_idx -l IU -1 s1_read1.fasta -2 s1_read2.fasta -p 4 -o /path/to/XAEM_project/eqc_sample1
 XAEM -i /path/to/TxIndexer_idx -l IU -1 s2_read1.fasta -2 s2_read2.fasta -p 4 -o /path/to/XAEM_project/eqc_sample2
 If the data is compressed in gz format. We can combine with gunzip for decompression on-fly:
 XAEM -i /path/to/TxIndexer_idx -l IU -1 <(gunzip -c s1_read1.gz) -2 <(gunzip -c s1_read2.gz) -p 4 -o /path/to/XAEM_project/eqc_sample1
 XAEM -i /path/to/TxIndexer_idx -l IU -1 <(gunzip -c s2_read1.gz) -2 <(gunzip -c s2_read2.gz) -p 4 -o /path/to/XAEM_project/eqc_sample2
-4.3 Creating Y count matrix
+### 4.3 Creating Y count matrix
 After running XAEM there will be the output of equivalence class table for multiple samples. We then create the Y count matrix. For example, if we want to run XAEM parallelly using 8 cores, the command is:
 
 Rscript Create_count_matrix.R workdir=/path/to/XAEM_project core=8
-4.4 Updating the X matrix and isoform expression using AEM algorithm
+### 4.4 Updating the X matrix and isoform expression using AEM algorithm
 When finish the construction of Y count matrix we then use the AEM algorithm to update the X matrix. The updated X matrix is then used to estimate the isoform expression. The command is:
 
 Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8
@@ -108,7 +108,8 @@ Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8 Merge=TRUE
 ## 5. A complete run of XAEM by copy and paste
 This section shows the tutorial to run XAEM pipeline. We can test XAEM by just copy and paste of the example commands.
 
-Download the binary file of XAEM
+- Download the binary file of XAEM
+```sh
 mkdir tmp_test
 cd tmp_test
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/XAEM-binary-0.1.0.tar.gz
@@ -117,11 +118,15 @@ cd XAEM-binary-0.1.0
 bash configure.sh
 export LD_LIBRARY_PATH=/path/to/XAEM-binary-0.1.0/lib:$LD_LIBRARY_PATH
 export PATH=/path/to/XAEM-binary-0.1.0/bin:$PATH
-Download fasta file and index it
+```
+- Download fasta file and index it
+```sh
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/transcripts.fa.gz
 gunzip transcripts.fa.gz
 TxIndexer -t transcripts.fa -o TxIndexer_idx
-Download the X matrix and RNA-seq data of sample1 and sample2
+```
+- Download the X matrix and RNA-seq data of sample1 and sample2
+```sh
 mkdir XAEM_project
 cd XAEM_project
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/X_matrix.RData
@@ -130,7 +135,8 @@ wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample1_read2.fasta.gz
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample2_read1.fasta.gz
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample2_read2.fasta.gz
 cd ..
-Generate the eqclass table and Y count matrix
+```
+- Generate the eqclass table and Y count matrix
 ```sh
 XAEM -i TxIndexer_idx -l IU -1 <(gunzip -c XAEM_project/sample1_read1.fasta.gz) -2 <(gunzip -c XAEM_project/sample1_read2.fasta.gz) -p 4 -o XAEM_project/eqc_sample1
 XAEM -i TxIndexer_idx -l IU -1 <(gunzip -c XAEM_project/sample2_read1.fasta.gz) -2 <(gunzip -c XAEM_project/sample2_read2.fasta.gz) -p 4 -o XAEM_project/eqc_sample2
