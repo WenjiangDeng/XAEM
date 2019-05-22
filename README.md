@@ -13,7 +13,8 @@ Software requirements for XAEM:
 
 - Download the sequences of transcripts: transcripts.fa.gz
 - Download the annotation of transcripts: genes_annotation.gtf.gz
-### X matrix (design matrix) :  X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human the X matrix can be downloaded here: X_matrix.RData. For other species the X matrix will be added soon.
+#### X matrix (design matrix) :  
+X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human the X matrix can be downloaded here: X_matrix.RData. For other species the X matrix will be added soon.
 
 ## 2. Download and installation
 If you use the binary verion of XAEM (recommended):
