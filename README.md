@@ -110,13 +110,16 @@ wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample2_read1.fasta.gz
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample2_read2.fasta.gz
 cd ..
 Generate the eqclass table and Y count matrix
+```sh
 XAEM -i TxIndexer_idx -l IU -1 <(gunzip -c XAEM_project/sample1_read1.fasta.gz) -2 <(gunzip -c XAEM_project/sample1_read2.fasta.gz) -p 4 -o XAEM_project/eqc_sample1
 XAEM -i TxIndexer_idx -l IU -1 <(gunzip -c XAEM_project/sample2_read1.fasta.gz) -2 <(gunzip -c XAEM_project/sample2_read2.fasta.gz) -p 4 -o XAEM_project/eqc_sample2
 ## R packages foreach and doParallel are required
+
 Rscript Create_count_matrix.R workdir=$PWD/XAEM_project core=8
 Estimate isoform expression using AEM algorithm
 Rscript AEM_update_X_beta.R workdir=$PWD/XAEM_project core=8
 cd XAEM_project
+```
 
 You can also check our website at http://fafner.meb.ki.se/biostatwiki/xaem/ for more information to use XAEM.
 
