@@ -72,16 +72,17 @@ wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/X_matrix.RData -P /path/to/XA
 ```
 The steps to construct the design matrix are:
 
-Generate simulated RNA-seq data using the R package polyester
-#### R package polyester and Biostrings are required**
+- Generate simulated RNA-seq data using the R package polyester
+
 ```sh
+#### R package polyester and Biostrings are required
 Rscript XAEM_home/R/genPolyesterSimulation.R /path/to/transcripts.fa /path/to/design_matrix
 ```
-Run GenTC to generate Transcript Cluster (TC) using simulated data. GenTC will generate an eqClass.txt file as the input for next step.
+- Run GenTC to generate Transcript Cluster (TC) using simulated data. GenTC will generate an eqClass.txt file as the input for next step.
 ```sh
 GenTC -i /path/to/TxIndexer_idx -l IU -1 /path/to/design_matrix/sample_01_1.fasta -2 /path/to/design_matrix/sample_01_2.fasta -p 8 -o /path/to/design_matrix
 ```
-Create the design matrix using the eqClass.txt from last step. The design matrix will be saved in X_matrix.RData. "H=0.025" is the threshold to filter false positive neighbors in each X matrix. (Please see our paper Section 2.2.1)
+- Create the design matrix using the eqClass.txt from last step. The design matrix will be saved in X_matrix.RData. "H=0.025" is the threshold to filter false positive neighbors in each X matrix. (Please see our paper Section 2.2.1)
 ```sh
 Rscript XAEM_home/R/buildCRP.R in=/path/to/design_matrix/eqClass.txt out=/path/to/design_matrix/X_matrix.RData H=0.025
 ```
