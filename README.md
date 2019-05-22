@@ -73,7 +73,7 @@ wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/X_matrix.RData -P /path/to/XA
 The steps to construct the design matrix are:
 
 Generate simulated RNA-seq data using the R package polyester
-**R package polyester and Biostrings are required**
+#### R package polyester and Biostrings are required**
 ```sh
 Rscript XAEM_home/R/genPolyesterSimulation.R /path/to/transcripts.fa /path/to/design_matrix
 ```
