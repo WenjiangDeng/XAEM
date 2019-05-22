@@ -1,16 +1,9 @@
-# XAEM
-XAEM: a novel method for estimation of isoform expression
+####################
+# XAEM: a novel method for estimation of isoform expression
+###################
+You can also check our website at http://fafner.meb.ki.se/biostatwiki/xaem/ for more information to use XAEM.
 
-Check our website at http://fafner.meb.ki.se/biostatwiki/xaem/ for more information to use XAEM.
-
-Contents
-Introduction
-Download and installation
-Index
-XAEM: step by step instruction and explanation
-A complete run of XAEM by copy and paste
-
-1. Introduction
+## 1. Introduction
 This document shows how to use XAEM to quantify isoform expression for multiple samples.
 
 Software requirements for XAEM:
@@ -23,7 +16,7 @@ Download the sequences of transcripts: transcripts.fa.gz
 Download the annotation of transcripts: genes_annotation.gtf.gz
 X matrix (design matrix) :  X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human the X matrix can be downloaded here: X_matrix.RData. For other species the X matrix will be added soon.
 
-2. Download and installation
+## 2. Download and installation
 If you use the binary verion of XAEM (recommended):
 
 Download the latest binary version from XAEM website:
@@ -51,13 +44,13 @@ export LD_LIBRARY_PATH=/path/to/expectedBuildDir/lib:$LD_LIBRARY_PATH
 export PATH=/path/to/expectedBuildDir/bin:$PATH
 Do not forget to replace "/path/to/" by your local path.
 
-3. Index
+## 3. Index
 Index the reference file
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/transcripts.fa.gz
 gunzip transcripts.fa.gz
 TxIndexer -t /path/to/transcripts.fa -o /path/to/TxIndexer_idx
-4. XAEM: step by step instruction and explanation
- 4.1 Construction of the X matrix (design matrix)
+## 4. XAEM: step by step instruction and explanation
+ ### 4.1 Construction of the X matrix (design matrix)
 This step constructs the X matrix required by the XAEM pipeline. For users working in human the X can be downloaded here: X_matrix.RData. It's recommended to make a project folder and put the file in that folder, e.g. /path/to/XAEM_project. The command is:
 
 mkdir /path/to/XAEM_project
@@ -65,7 +58,7 @@ wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/X_matrix.RData -P /path/to/XA
 The steps to construct the design matrix are:
 
 Generate simulated RNA-seq data using the R package polyester
-## R package polyester and Biostrings are required
+### R package polyester and Biostrings are required
 Rscript XAEM_home/R/genPolyesterSimulation.R /path/to/transcripts.fa /path/to/design_matrix
 Run GenTC to generate Transcript Cluster (TC) using simulated data. GenTC will generate an eqClass.txt file as the input for next step.
 GenTC -i /path/to/TxIndexer_idx -l IU -1 /path/to/design_matrix/sample_01_1.fasta -2 /path/to/design_matrix/sample_01_2.fasta -p 8 -o /path/to/design_matrix
