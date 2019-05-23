@@ -151,7 +151,9 @@ XAEM -i TxIndexer_idx -l IU -1 <(gunzip -c XAEM_project/sample2_read1.fasta.gz) 
 ## R packages foreach and doParallel are required
 
 Rscript Create_count_matrix.R workdir=$PWD/XAEM_project core=8
-Estimate isoform expression using AEM algorithm
+```
+- Estimate isoform expression using AEM algorithm
+```sh
 Rscript AEM_update_X_beta.R workdir=$PWD/XAEM_project core=8
 cd XAEM_project
 ```
