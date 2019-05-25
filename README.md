@@ -109,7 +109,7 @@ Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8
 ```
 The output in this step will be saved in XAEM_isoform_expression.RData, which is the TPM value and raw read counts of multiple samples.
 
-Note: In XAEM pipeline we provide an extra step to merge the paralogs within the updated X matrix (please see our paper Section 2.2.3 and Section 2.3). The new X matrix is then used to estimate the final isoform expression. The paralog merging step produces more accurate estimation but can yield different sets of isoforms between different projects. If you want to run XAEM with this step in your project, you can simply add the "Merge=TRUE" parameter and run the command as below:
+**Note**: In XAEM pipeline we provide an extra step to merge the paralogs within the updated X matrix (please see our paper Section 2.2.3 and Section 2.3). The new X matrix is then used to estimate the final isoform expression. The paralog merging step produces more accurate estimation but can yield different sets of isoforms between different projects. If you want to run XAEM with this step in your project, you can simply add the "Merge=TRUE" parameter and run the command as below:
 ```sh
 Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8 Merge=TRUE
 ```
