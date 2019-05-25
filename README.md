@@ -21,7 +21,7 @@ If you use the binary verion of XAEM (recommended):
 
 - Download the latest binary version from XAEM website:
 ```sh
-wget https://github.com/WenjiangDeng/XAEM/blob/master/XAEM-binary-0.1.0.tar.gz
+wget https://github.com/WenjiangDeng/XAEM/raw/master/XAEM-binary-0.1.0.tar.gz
 ```
 - Uncompress to folder
 ```sh
