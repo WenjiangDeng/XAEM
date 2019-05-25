@@ -21,7 +21,7 @@ If you use the binary verion of XAEM (recommended):
 
 - Download the latest binary version from XAEM website:
 ```sh
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/XAEM-binary-0.1.0.tar.gz
+wget https://github.com/WenjiangDeng/XAEM/blob/master/XAEM-binary-0.1.0.tar.gz
 ```
 - Uncompress to folder
 ```sh
