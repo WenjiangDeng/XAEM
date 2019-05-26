@@ -92,7 +92,9 @@ The command to generate equivalence class table for each sample is similar to "s
 ```sh
 XAEM -i /path/to/TxIndexer_idx -l IU -1 s1_read1.fasta -2 s1_read2.fasta -p 4 -o /path/to/XAEM_project/eqc_sample1
 XAEM -i /path/to/TxIndexer_idx -l IU -1 s2_read1.fasta -2 s2_read2.fasta -p 4 -o /path/to/XAEM_project/eqc_sample2
+```
 If the data is compressed in gz format. We can combine with gunzip for decompression on-fly:
+```sh
 XAEM -i /path/to/TxIndexer_idx -l IU -1 <(gunzip -c s1_read1.gz) -2 <(gunzip -c s1_read2.gz) -p 4 -o /path/to/XAEM_project/eqc_sample1
 XAEM -i /path/to/TxIndexer_idx -l IU -1 <(gunzip -c s2_read1.gz) -2 <(gunzip -c s2_read2.gz) -p 4 -o /path/to/XAEM_project/eqc_sample2
 ```
