@@ -68,7 +68,7 @@ TxIndexer -t /path/to/transcripts.fa -o /path/to/TxIndexer_idx
 This step constructs the X matrix required by the XAEM pipeline. For users working in human the X can be downloaded here: X_matrix.RData. It's recommended to make a project folder and put the file in that folder, e.g. /path/to/XAEM_project. The command is:
 ```sh
 mkdir /path/to/XAEM_project
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/X_matrix.RData -P /path/to/XAEM_project
+wget https://github.com/WenjiangDeng/XAEM/raw/master/X_matrix.RData -P /path/to/XAEM_project
 ```
 The steps to construct the design matrix are:
 
@@ -137,7 +137,7 @@ TxIndexer -t transcripts.fa -o TxIndexer_idx
 ```sh
 mkdir XAEM_project
 cd XAEM_project
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/X_matrix.RData
+wget https://github.com/WenjiangDeng/XAEM/raw/master/X_matrix.RData
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample1_read1.fasta.gz
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample1_read2.fasta.gz
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample2_read1.fasta.gz
