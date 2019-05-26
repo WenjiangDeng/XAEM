@@ -162,4 +162,4 @@ cd XAEM_project
 
 Reference: tba
 
-Please also visit our webiste at http://fafner.meb.ki.se/biostatwiki/ for more bioinformatics tools :)
+Please also visit our webiste at http://fafner.meb.ki.se/biostatwiki/ for more bioinformatics tools : )
