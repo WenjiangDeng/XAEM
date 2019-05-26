@@ -5,6 +5,7 @@
 ## 1. Introduction
 This document shows how to use XAEM to quantify isoform expression for multiple samples from RNA-seq reads.
 
+
 Software requirements for XAEM:
 
 - R version 3.3.0 or later with installed packages: foreach and doParallel
@@ -161,4 +162,4 @@ cd XAEM_project
 
 Reference: tba
 
-Please also visit our webiste at http://fafner.meb.ki.se/biostatwiki/ for more bioinformatics tools.
+Please also visit our webiste at http://fafner.meb.ki.se/biostatwiki/ for more bioinformatics tools :)
