@@ -65,7 +65,7 @@ TxIndexer -t /path/to/transcripts.fa -o /path/to/TxIndexer_idx
 ```
 ## 4. XAEM: step by step instruction and explanation
 ### 4.1 Construction of the X matrix (design matrix)
-This step constructs the X matrix required by the XAEM pipeline. For users working in human the X can be downloaded here: X_matrix.RData. It's recommended to make a project folder and put the file in that folder, e.g. /path/to/XAEM_project. The command is:
+This step constructs the X matrix required by the XAEM pipeline. For users working in human the X can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/raw/master/X_matrix.RData). It's recommended to make a project folder and put the file in that folder, e.g. /path/to/XAEM_project. The command is:
 ```sh
 mkdir /path/to/XAEM_project
 wget https://github.com/WenjiangDeng/XAEM/raw/master/X_matrix.RData -P /path/to/XAEM_project
@@ -120,7 +120,7 @@ This section shows the tutorial to run XAEM pipeline. We can test XAEM by just 
 ```sh
 mkdir tmp_test
 cd tmp_test
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/XAEM-binary-0.1.0.tar.gz
+wget https://github.com/WenjiangDeng/XAEM/raw/master/XAEM-binary-0.1.0.tar.gz
 tar -xzvf XAEM-binary-0.1.0.tar.gz
 cd XAEM-binary-0.1.0
 bash configure.sh
