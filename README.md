@@ -9,12 +9,12 @@ Software requirements for XAEM:
 
 - R version 3.3.0 or later with installed packages: foreach and doParallel
 - C++11 compliant compiler (g++ >= 4.7)
-- Annotation reference: XAEM requires a fasta file of transcript sequences and a gtf file of transcript annotation. XAEM supports all kinds of reference and annotation for any species. In our paper XAEM uses the UCSC hg19 annotation:
+- Reference transcriptome: XAEM requires a fasta file of transcript sequences as reference. XAEM supports all kinds of reference and annotation for any species. In our paper XAEM uses the UCSC hg19 reference:
 
-- Download the sequences of transcripts: transcripts.fa.gz
-- Download the annotation of transcripts: genes_annotation.gtf.gz
+- Download the sequences of transcripts: [transcripts.fa.gz](http://fafner.meb.ki.se/biostatwiki/2018_XAEM/transcripts.fa.gz)
+
 #### X matrix (design matrix) :  
-X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human the X matrix can be downloaded here: X_matrix.RData. For other species the X matrix will be added soon.
+X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human the X matrix can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/raw/master/X_matrix.RData). For other species the X matrix will be added soon.
 
 ## 2. Download and installation
 If you use the binary verion of XAEM (recommended):
