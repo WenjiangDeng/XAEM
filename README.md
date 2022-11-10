@@ -100,7 +100,7 @@ XAEM -i /path/to/TxIndexer_idx -l IU -1 <(gunzip -c s2_read1.gz) -2 <(gunzip -c 
 ```
 ### 4.2 Creating Y count matrix
 
-After running XAEM there will be the output of equivalence class table for multiple samples. We then create the Y count matrix. For example, if we want to run XAEM parallelly using 8 cores, the command is:
+After running XAEM there will be the output of the equivalence class table for multiple samples. We then create the Y count matrix. For example, if we want to run XAEM parallelly using 8 cores, the command is:
 ```sh
 Rscript Create_count_matrix.R workdir=/path/to/XAEM_project core=8
 ```
@@ -118,13 +118,11 @@ The output in this step will be saved in XAEM_isoform_expression.RData, which is
 - isoform.out (default=XAEM_isoform_expression.RData):  the output contains the estimated expression of individual transcripts, where the paralogs are split into separate isoforms. This file contains two objects: isoform_count and isoform_tpm for estimated counts and normalized values (TPM). The expression of the individual isoforms is calculated with the corresponding setting of parameter “isoform.method” below.
 - isoform.method (default=average):  to report the expression of the individual members of a paralog as the average or total expression of the paralog set (value=average/total).
 - paralog.out (default=XAEM_paralog_expression.RData): the output contains the estimated expression of merged paralogs. This file consists of two objects: XAEM_count and XAEM_tpm  for the estimated counts and normalized values (TPM). The standard error of the estimate is supplied in object XAEM_se stored in *.standard_error.RData.
-- merge.paralogs (default=TRUE) (*): the parameter to turn on/off (value=TRUE/FALSE) the paralog merging in XAEM. Please see the details of how to use this parameter in the note at the end of this section.
+- merge.paralogs (default=TRUE) (*****): the parameter to turn on/off (value=TRUE/FALSE) the paralog merging in XAEM. Please see the details of how to use this parameter in the note at the end of this section.
 -remove.ycount (default=TRUE): to clean all data of Ycount after use.
 
-**Note**: In XAEM pipeline we provide an extra step to merge the paralogs within the updated X matrix (please see our paper Section 2.2.3 and Section 2.3). The new X matrix is then used to estimate the final isoform expression. The paralog merging step produces more accurate estimation but can yield different sets of isoforms between different projects. If you want to run XAEM with this step in your project, you can simply add the "Merge=TRUE" parameter and run the command as below:
-```sh
-Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8 Merge=TRUE
-```
+**Note(*)**:In XAEM pipeline we provide this parameter (merge.paralog) to merge or not merge the paralogs within the updated X matrix (please see XAEM paper Section 2.2.3 and Section 2.3).  **Turning on (default) the paralog merging step produces a more accurate estimation. Turning off this step can produce the same sets of isoforms between different projects.**
+
 ## 5. A complete run of XAEM by copy and paste
 This section shows the tutorial to run XAEM pipeline. We can test XAEM by just copy and paste of the example commands.
 
