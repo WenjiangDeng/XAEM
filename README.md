@@ -125,7 +125,7 @@ The output in this step will be saved in XAEM_isoform_expression.RData, which is
 **Note(*)**:In XAEM pipeline we provide this parameter (merge.paralog) to merge or not merge the paralogs within the updated X matrix (please see XAEM paper Section 2.2.3 and Section 2.3).  **Turning on (default) the paralog merging step produces a more accurate estimation. Turning off this step can produce the same sets of isoforms between different projects.**
 
 ## 5. A complete run of XAEM by copy and paste
-This section shows the tutorial to run XAEM pipeline. We can test XAEM by just copy and paste of the example commands.
+This section presents a tutorial to run XAEM pipeline with a toy example. Suppose that input data contain two RNA-seq samples and server supplies 4 CPUs for computation. We can test XAEM by just copy and paste of the example commands.
 
 - Download the binary file of XAEM
 ```sh
@@ -146,13 +146,16 @@ TxIndexer -t transcripts.fa -o TxIndexer_idx
 ```
 - Download the X matrix and RNA-seq data of sample1 and sample2
 ```sh
+## Download input RNA-seq samples
+# Create a XAEM project to save the data
 mkdir XAEM_project
 cd XAEM_project
-wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample1_read1.fasta.gz
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample1_read2.fasta.gz
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample2_read1.fasta.gz
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample2_read2.fasta.gz
+
+# Download the RNA-seq data
+wget https://www.meb.ki.se/sites/biostatwiki/wp-content/uploads/sites/4/XAEM_datasources/sample1_read1.fasta.gz
+wget https://www.meb.ki.se/sites/biostatwiki/wp-content/uploads/sites/4/XAEM_datasources/sample1_read2.fasta.gz
+wget https://www.meb.ki.se/sites/biostatwiki/wp-content/uploads/sites/4/XAEM_datasources/sample2_read1.fasta.gz
+wget https://www.meb.ki.se/sites/biostatwiki/wp-content/uploads/sites/4/XAEM_datasources/sample2_read2.fasta.gz
 cd ..
 ```
 - Generate the eqclass table and Y count matrix
