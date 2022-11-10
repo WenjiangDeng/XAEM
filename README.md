@@ -14,7 +14,7 @@ Software requirements for XAEM:
 XAEM requires a fasta file of transcript sequences as reference. XAEM supports all kinds of reference and annotation for any species. In our paper XAEM we use the UCSC hg19 reference. You can download the reference of transcripts here: [transcripts.fa.gz](https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/transcripts.fa.gz)
 
 #### X matrix (design matrix) :  
-X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human the X matrix can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData). For other species the X matrix will be added soon.
+X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human, the X matrix can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData). For other species the X matrix will be added soon.
 
 ## 2. Download and installation
 If you use the binary verion of XAEM (recommended):
