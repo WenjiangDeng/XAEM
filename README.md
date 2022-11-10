@@ -3,14 +3,15 @@
 
 
 ## 1. Introduction
-This document shows how to use XAEM to quantify isoform expression for multiple samples from RNA-seq reads.
-
+This vignette shows how to use XAEM to quantify isoform expression for multiple samples from RNA-seq reads.
 
 Software requirements for XAEM:
 
 - R version 3.3.0 or later with installed packages: foreach and doParallel
 - C++11 compliant compiler (g++ >= 4.7)
-- Reference transcriptome: XAEM requires a fasta file of transcript sequences as reference. XAEM supports all kinds of reference and annotation for any species. In our paper XAEM uses the UCSC hg19 reference. You can download the reference of transcripts here: [transcripts.fa.gz](http://fafner.meb.ki.se/biostatwiki/2018_XAEM/transcripts.fa.gz)
+- XAEM is currently tested in Linux OS environment
+#### Reference transcriptome: 
+XAEM requires a fasta file of transcript sequences as reference. XAEM supports all kinds of reference and annotation for any species. In our paper XAEM uses the UCSC hg19 reference. You can download the reference of transcripts here: [transcripts.fa.gz](https://www.meb.ki.se/sites/biostatwiki/wp-content/uploads/sites/4/XAEM_datasources/transcripts.fa.gz)
 
 #### X matrix (design matrix) :  
 X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human the X matrix can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/blob/master/X_matrix.RData). For other species the X matrix will be added soon.
