@@ -111,6 +111,17 @@ Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8
 ```
 The output in this step will be saved in XAEM_isoform_expression.RData, which is the TPM value and raw read counts of multiple samples.
 
+**Parameter setting**
+
+-workdir: the path to working directory
+-core: the number of cpu cores for parallel computing
+-design.matrix: the path to the design matrix
+-isoform.out (default=XAEM_isoform_expression.RData):  the output contains the estimated expression of individual transcripts, where the paralogs are split into separate isoforms. This file contains two objects: isoform_count and isoform_tpm for estimated counts and normalized values (TPM). The expression of the individual isoforms is calculated with the corresponding setting of parameter “isoform.method” below.
+-isoform.method (default=average):  to report the expression of the individual members of a paralog as the average or total expression of the paralog set (value=average/total).
+-paralog.out (default=XAEM_paralog_expression.RData): the output contains the estimated expression of merged paralogs. This file consists of two objects: XAEM_count and XAEM_tpm  for the estimated counts and normalized values (TPM). The standard error of the estimate is supplied in object XAEM_se stored in *.standard_error.RData.
+-merge.paralogs (default=TRUE) (*): the parameter to turn on/off (value=TRUE/FALSE) the paralog merging in XAEM. Please see the details of how to use this parameter in the note at the end of this section.
+-remove.ycount (default=TRUE): to clean all data of Ycount after use.
+
 **Note**: In XAEM pipeline we provide an extra step to merge the paralogs within the updated X matrix (please see our paper Section 2.2.3 and Section 2.3). The new X matrix is then used to estimate the final isoform expression. The paralog merging step produces more accurate estimation but can yield different sets of isoforms between different projects. If you want to run XAEM with this step in your project, you can simply add the "Merge=TRUE" parameter and run the command as below:
 ```sh
 Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8 Merge=TRUE
