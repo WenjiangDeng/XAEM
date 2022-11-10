@@ -11,7 +11,7 @@ Software requirements for XAEM:
 - C++11 compliant compiler (g++ >= 4.7)
 - XAEM is currently tested in Linux OS environment
 #### Reference transcriptome: 
-XAEM requires a fasta file of transcript sequences as reference. XAEM supports all kinds of reference and annotation for any species. In our paper XAEM uses the UCSC hg19 reference. You can download the reference of transcripts here: [transcripts.fa.gz](https://www.meb.ki.se/sites/biostatwiki/wp-content/uploads/sites/4/XAEM_datasources/transcripts.fa.gz)
+XAEM requires a fasta file of transcript sequences as reference. XAEM supports all kinds of reference and annotation for any species. In our paper XAEM uses the UCSC hg19 reference. You can download the reference of transcripts here: [transcripts.fa.gz](https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/transcripts.fa.gz)
 
 #### X matrix (design matrix) :  
 X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human the X matrix can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData). For other species the X matrix will be added soon.
@@ -21,29 +21,29 @@ If you use the binary verion of XAEM (recommended):
 
 - Download the latest binary version from XAEM website:
 ```sh
-wget https://github.com/WenjiangDeng/XAEM/raw/master/XAEM-binary-0.1.0.tar.gz
+wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/XAEM-binary-0.1.1.tar.gz
 ```
 - Uncompress to folder
 ```sh
-tar -xzvf XAEM-binary-0.1.0.tar.gz
+tar -xzvf XAEM-binary-0.1.1.tar.gz
 ```
 - Move to the XAEM_home directory and do configuration for XAEM
 ```sh
-cd XAEM-binary-0.1.0
+cd XAEM-binary-0.1.1
 bash configure.sh
 ```
 - Add paths of lib folder and bin folder to LD_LIBRARY_PATH and PATH
 ```sh
-export LD_LIBRARY_PATH=/path/to/XAEM-binary-0.1.0/lib:$LD_LIBRARY_PATH
-export PATH=/path/to/XAEM-binary-0.1.0/bin:$PATH
+export LD_LIBRARY_PATH=/path/to/XAEM-binary-0.1.1/lib:$LD_LIBRARY_PATH
+export PATH=/path/to/XAEM-binary-0.1.1/bin:$PATH
 ```
 If you want to build XAEM from sources:
 
 Download XAEM from XAEM website and move to XAEM_home directory
 ```sh
-wget https://github.com/WenjiangDeng/XAEM/raw/master/XAEM-source-0.1.0.zip
-unzip XAEM-source-0.1.0.zip
-cd XAEM-source-0.1.0
+wget https://github.com/WenjiangDeng/XAEM/raw/master/XAEM-source-0.1.1.zip
+unzip XAEM-source-0.1.1.zip
+cd XAEM-source-0.1.1
 bash configure.sh
 ```
 XAEM requires information of flags from Sailfish including DFETCH_BOOST, DBOOST_ROOT, DTBB_INSTALL_DIR and DCMAKE_INSTALL_PREFIX. Please refer to the Sailfish website for more details of these flags.
