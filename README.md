@@ -59,16 +59,16 @@ Do not forget to replace "/path/to/" by your local path.
 ## 3. Index
 Index the reference file
 ```sh
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/transcripts.fa.gz
+wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/transcripts.fa.gz
 gunzip transcripts.fa.gz
 TxIndexer -t /path/to/transcripts.fa -o /path/to/TxIndexer_idx
 ```
 ## 4. XAEM: step by step instruction and explanation
 ### 4.1 Construction of the X matrix (design matrix)
-This step constructs the X matrix required by the XAEM pipeline. For users working in human the X can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/raw/master/X_matrix.RData). It's recommended to make a project folder and put the file in that folder, e.g. /path/to/XAEM_project. The command is:
+This step constructs the X matrix required by the XAEM pipeline. For users working in human the X can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData). It's recommended to make a project folder and put the file in that folder, e.g. /path/to/XAEM_project. The command is:
 ```sh
 mkdir /path/to/XAEM_project
-wget https://github.com/WenjiangDeng/XAEM/raw/master/X_matrix.RData -P /path/to/XAEM_project
+wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData -P /path/to/XAEM_project
 ```
 The steps to construct the design matrix are:
 
@@ -122,16 +122,16 @@ This section shows the tutorial to run XAEM pipeline. We can test XAEM by just 
 ```sh
 mkdir tmp_test
 cd tmp_test
-wget https://github.com/WenjiangDeng/XAEM/raw/master/XAEM-binary-0.1.0.tar.gz
-tar -xzvf XAEM-binary-0.1.0.tar.gz
-cd XAEM-binary-0.1.0
+wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/XAEM-binary-0.1.1.tar.gz
+tar -xzvf XAEM-binary-0.1.1.tar.gz
+cd XAEM-binary-0.1.1
 bash configure.sh
-export LD_LIBRARY_PATH=/path/to/XAEM-binary-0.1.0/lib:$LD_LIBRARY_PATH
-export PATH=/path/to/XAEM-binary-0.1.0/bin:$PATH
+export LD_LIBRARY_PATH=/path/to/XAEM-binary-0.1.1/lib:$LD_LIBRARY_PATH
+export PATH=/path/to/XAEM-binary-0.1.1/bin:$PATH
 ```
 - Download fasta file and index it
 ```sh
-wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/transcripts.fa.gz
+wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/transcripts.fa.gz
 gunzip transcripts.fa.gz
 TxIndexer -t transcripts.fa -o TxIndexer_idx
 ```
@@ -139,7 +139,7 @@ TxIndexer -t transcripts.fa -o TxIndexer_idx
 ```sh
 mkdir XAEM_project
 cd XAEM_project
-wget https://github.com/WenjiangDeng/XAEM/raw/master/X_matrix.RData
+wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample1_read1.fasta.gz
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample1_read2.fasta.gz
 wget http://fafner.meb.ki.se/biostatwiki/2018_XAEM/sample2_read1.fasta.gz
