@@ -3,7 +3,7 @@
 
 
 ## 1. Introduction
-This vignette shows how to use XAEM to quantify isoform expression using RNA-seq data from multiple samples.
+This vignette shows how to use XAEM to quantify isoform expression from RNA-seq data for **multiple samples**.
 
 Software requirements for XAEM:
 
