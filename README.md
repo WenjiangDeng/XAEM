@@ -17,7 +17,7 @@ XAEM requires a fasta file of transcript sequences as reference. XAEM supports a
 X matrix is an essential object for bias correction and isoform quantification (see our paper for more details). For users working on human, the X matrix can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData). For other species the X matrix will be added soon.
 
 ## 2. Download and installation
-If you use the binary verion of XAEM (recommended):
+**If you use the binary verion of XAEM (recommended):**
 
 - Download the latest binary version from XAEM website:
 ```sh
@@ -37,7 +37,7 @@ bash configure.sh
 export LD_LIBRARY_PATH=/path/to/XAEM-binary-0.1.1/lib:$LD_LIBRARY_PATH
 export PATH=/path/to/XAEM-binary-0.1.1/bin:$PATH
 ```
-If you want to build XAEM from sources:
+**If you want to build XAEM from sources:**
 
 Download XAEM from XAEM website and move to XAEM_home directory
 ```sh
