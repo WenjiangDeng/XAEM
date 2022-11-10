@@ -65,12 +65,12 @@ gunzip transcripts.fa.gz
 TxIndexer -t /path/to/transcripts.fa -o /path/to/TxIndexer_idx
 ```
 ### 3.2 Construction of the X matrix (design matrix)
-This step constructs the X matrix required by the XAEM pipeline. For users working in human the X can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData). It's recommended to make a project folder and put the file in that folder, e.g. /path/to/XAEM_project. The command is:
+This step constructs the X matrix required by the XAEM pipeline. For users working in human the X can be downloaded here: [X_matrix.RData](https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData). It's recommended to make a project folder and put X matrix in that folder, e.g. /path/to/XAEM_project. The command is:
 ```sh
 mkdir /path/to/XAEM_project
 wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData -P /path/to/XAEM_project
 ```
-The steps to construct the design matrix are:
+The steps to construct your own design matrix are:
 
 - Generate simulated RNA-seq data using the R package polyester
 
@@ -87,6 +87,7 @@ GenTC -i /path/to/TxIndexer_idx -l IU -1 /path/to/design_matrix/sample_01_1.fast
 Rscript XAEM_home/R/buildCRP.R in=/path/to/design_matrix/eqClass.txt out=/path/to/design_matrix/X_matrix.RData H=0.025
 ```
 ## 4. XAEM: step by step instruction and explanation
+Suppose we already created a working directory “XAEM_project” (/path/to/XAEM_project/) for quantification of transcripts, and the X_matrix.RData is saved in this folder.
 ### 4.1 Generating the equivalence class table
 The command to generate equivalence class table for each sample is similar to "sailfish quant".  For example, we want to run XAEM for sample1 and sample2 with 8 cpus:
 ```sh
@@ -100,7 +101,7 @@ XAEM -i /path/to/TxIndexer_idx -l IU -1 <(gunzip -c s2_read1.gz) -2 <(gunzip -c 
 ```
 ### 4.2 Creating Y count matrix
 
-After running XAEM there will be the output of the equivalence class table for multiple samples. We then create the Y count matrix. For example, if we want to run XAEM parallelly using 8 cores, the command is:
+After running XAEM there will be the output of the equivalence class table for **multiple samples**. We then create the Y count matrix. For example, if we want to run XAEM parallelly using 8 cores, the command is:
 ```sh
 Rscript Create_count_matrix.R workdir=/path/to/XAEM_project core=8
 ```
@@ -115,9 +116,9 @@ The output in this step will be saved in XAEM_isoform_expression.RData, which is
 - workdir: the path to working directory
 - core: the number of cpu cores for parallel computing
 - design.matrix: the path to the design matrix
-- isoform.out (default=XAEM_isoform_expression.RData):  the output contains the estimated expression of individual transcripts, where the paralogs are split into separate isoforms. This file contains two objects: isoform_count and isoform_tpm for estimated counts and normalized values (TPM). The expression of the individual isoforms is calculated with the corresponding setting of parameter “isoform.method” below.
+- isoform.out (default=XAEM_isoform_expression.RData):  the output contains the estimated expression of individual transcripts, **where the paralogs are split into separate isoforms**. This file contains two objects: isoform_count and isoform_tpm for estimated counts and normalized values (TPM). The expression of the individual isoforms is calculated with the corresponding setting of parameter “isoform.method” below.
 - isoform.method (default=average):  to report the expression of the individual members of a paralog as the average or total expression of the paralog set (value=average/total).
-- paralog.out (default=XAEM_paralog_expression.RData): the output contains the estimated expression of merged paralogs. This file consists of two objects: XAEM_count and XAEM_tpm  for the estimated counts and normalized values (TPM). The standard error of the estimate is supplied in object XAEM_se stored in *.standard_error.RData.
+- paralog.out (default=XAEM_paralog_expression.RData): the output contains the **estimated expression of merged paralogs**. This file consists of two objects: XAEM_count and XAEM_tpm  for the estimated counts and normalized values (TPM). The standard error of the estimate is supplied in object XAEM_se stored in *.standard_error.RData.
 - merge.paralogs (default=TRUE) (*****): the parameter to turn on/off (value=TRUE/FALSE) the paralog merging in XAEM. Please see the details of how to use this parameter in the note at the end of this section.
 -remove.ycount (default=TRUE): to clean all data of Ycount after use.
 
