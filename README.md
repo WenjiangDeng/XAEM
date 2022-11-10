@@ -105,21 +105,20 @@ After running XAEM there will be the output of equivalence class table for multi
 Rscript Create_count_matrix.R workdir=/path/to/XAEM_project core=8
 ```
 ### 4.3 Updating the X matrix and isoform expression using AEM algorithm
-When finish the construction of Y count matrix we then use the AEM algorithm to update the X matrix. The updated X matrix is then used to estimate the isoform expression. The command is:
+When finish the construction of Y count matrix, we use the AEM algorithm to update the X matrix. The updated X matrix is then used to estimate the transcript (isoform) expression. The command is:
 ```sh
-Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8
+Rscript AEM_update_X_beta.R workdir=/path/to/XAEM_project core=8 design.matrix=X_matrix.RData isoform.out=XAEM_isoform_expression.RData paralog.out=XAEM_paralog_expression.RData merge.paralogs=FALSE isoform.method=average remove.ycount=TRUE
 ```
 The output in this step will be saved in XAEM_isoform_expression.RData, which is the TPM value and raw read counts of multiple samples.
 
 **Parameter setting**
-
--workdir: the path to working directory
--core: the number of cpu cores for parallel computing
--design.matrix: the path to the design matrix
--isoform.out (default=XAEM_isoform_expression.RData):  the output contains the estimated expression of individual transcripts, where the paralogs are split into separate isoforms. This file contains two objects: isoform_count and isoform_tpm for estimated counts and normalized values (TPM). The expression of the individual isoforms is calculated with the corresponding setting of parameter “isoform.method” below.
--isoform.method (default=average):  to report the expression of the individual members of a paralog as the average or total expression of the paralog set (value=average/total).
--paralog.out (default=XAEM_paralog_expression.RData): the output contains the estimated expression of merged paralogs. This file consists of two objects: XAEM_count and XAEM_tpm  for the estimated counts and normalized values (TPM). The standard error of the estimate is supplied in object XAEM_se stored in *.standard_error.RData.
--merge.paralogs (default=TRUE) (*): the parameter to turn on/off (value=TRUE/FALSE) the paralog merging in XAEM. Please see the details of how to use this parameter in the note at the end of this section.
+- workdir: the path to working directory
+- core: the number of cpu cores for parallel computing
+- design.matrix: the path to the design matrix
+- isoform.out (default=XAEM_isoform_expression.RData):  the output contains the estimated expression of individual transcripts, where the paralogs are split into separate isoforms. This file contains two objects: isoform_count and isoform_tpm for estimated counts and normalized values (TPM). The expression of the individual isoforms is calculated with the corresponding setting of parameter “isoform.method” below.
+- isoform.method (default=average):  to report the expression of the individual members of a paralog as the average or total expression of the paralog set (value=average/total).
+- paralog.out (default=XAEM_paralog_expression.RData): the output contains the estimated expression of merged paralogs. This file consists of two objects: XAEM_count and XAEM_tpm  for the estimated counts and normalized values (TPM). The standard error of the estimate is supplied in object XAEM_se stored in *.standard_error.RData.
+- merge.paralogs (default=TRUE) (*): the parameter to turn on/off (value=TRUE/FALSE) the paralog merging in XAEM. Please see the details of how to use this parameter in the note at the end of this section.
 -remove.ycount (default=TRUE): to clean all data of Ycount after use.
 
 **Note**: In XAEM pipeline we provide an extra step to merge the paralogs within the updated X matrix (please see our paper Section 2.2.3 and Section 2.3). The new X matrix is then used to estimate the final isoform expression. The paralog merging step produces more accurate estimation but can yield different sets of isoforms between different projects. If you want to run XAEM with this step in your project, you can simply add the "Merge=TRUE" parameter and run the command as below:
