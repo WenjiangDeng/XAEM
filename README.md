@@ -41,7 +41,7 @@ If you want to build XAEM from sources:
 
 Download XAEM from XAEM website and move to XAEM_home directory
 ```sh
-wget https://github.com/WenjiangDeng/XAEM/raw/master/XAEM-source-0.1.1.zip
+wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/XAEM-source-0.1.1.tar_.gz
 unzip XAEM-source-0.1.1.zip
 cd XAEM-source-0.1.1
 bash configure.sh
