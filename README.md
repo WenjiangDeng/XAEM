@@ -1,5 +1,5 @@
 
-# XAEM: a novel method for isoform quantification
+# XAEM: a novel statistical method for isoform quantification
 
 
 ## 1. Introduction
