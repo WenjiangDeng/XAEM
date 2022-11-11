@@ -146,11 +146,13 @@ TxIndexer -t transcripts.fa -o TxIndexer_idx
 ```
 - Download the X matrix and RNA-seq data of sample1 and sample2
 ```sh
+
+wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData
+
 ## Download input RNA-seq samples
 # Create a XAEM project to save the data
 mkdir XAEM_project
 cd XAEM_project
-wget https://github.com/WenjiangDeng/XAEM/releases/download/v0.1.1/X_matrix.RData
 # Download the RNA-seq data
 wget https://www.meb.ki.se/sites/biostatwiki/wp-content/uploads/sites/4/XAEM_datasources/sample1_read1.fasta.gz
 wget https://www.meb.ki.se/sites/biostatwiki/wp-content/uploads/sites/4/XAEM_datasources/sample1_read2.fasta.gz
