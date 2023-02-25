@@ -2,6 +2,7 @@
 # XAEM: a novel statistical method for isoform quantification
 
 **Updates: we have released XAEM v0.1.2 to work with complex annotations such as GENCODE and ENSEMBL. [Check here](https://github.com/WenjiangDeng/XAEM/releases).**
+
 ## 1. Introduction
 This vignette shows how to use XAEM to quantify isoform expression from RNA-seq data for **multiple samples**.
 
