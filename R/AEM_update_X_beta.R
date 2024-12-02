@@ -12,7 +12,7 @@ core = 8 #default
 merge.paralogs = TRUE ## default is to combine paralogs in the updated X to obtain the best performance
 fout="XAEM_isoform_expression.RData"
 foutr="XAEM_paralog_expression.RData"
-design.matrix="X_matrix.RData"
+design.matrix="X_matrix.RData" # the parameter matrix in Y=xbeta model
 isoform.method="average" #  "average" or "total"
 remove.ycount=TRUE
 
