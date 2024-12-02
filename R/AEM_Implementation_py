@@ -1,0 +1,125 @@
+import os
+import numpy as np
+import pandas as pd
+from joblib import Parallel, delayed
+import multiprocessing
+import pickle
+
+# Configuration parameters
+workdir = None
+core = 8  # Default number of cores
+merge_paralogs = True  # Default is to combine paralogs
+fout = "XAEM_isoform_expression.pkl"
+foutr = "XAEM_paralog_expression.pkl"
+design_matrix = "X_matrix.pkl"
+isoform_method = "average"  # "average" or "total"
+remove_ycount = True
+save_subset = False
+no_bias_result = False
+foutr_no_bias = "XAEM_noBiasCor.pkl"
+
+# Parsing command-line arguments (simulated as a dictionary here for demonstration)
+args = {
+    "workdir": "/path/to/workdir",
+    "core": 8,
+    "design.matrix": "X_matrix.pkl",
+    "isoform.out": "XAEM_isoform_expression.pkl",
+    "paralog.out": "XAEM_paralog_expression.pkl",
+    "merge.paralogs": "True",
+    "isoform.method": "average",
+    "remove.ycount": "True",
+}
+
+for key, value in args.items():
+    if key == "workdir":
+        workdir = value
+    elif key == "core":
+        core = int(value)
+    elif key == "design.matrix":
+        design_matrix = value
+    elif key == "isoform.out":
+        fout = value
+    elif key == "paralog.out":
+        foutr = value
+    elif key == "merge.paralogs":
+        merge_paralogs = value.lower() == "true"
+    elif key == "isoform.method":
+        isoform_method = value
+    elif key == "remove.ycount":
+        remove_ycount = value.lower() == "true"
+
+# Print configuration
+print("\nRunning with the following parameter settings:")
+print(f"workdir: {workdir}")
+print(f"core: {core}")
+print(f"design.matrix: {design_matrix}")
+print(f"isoform.out: {fout}")
+print(f"paralog.out: {foutr}")
+print(f"merge.paralogs: {merge_paralogs}")
+print(f"isoform.method: {isoform_method}")
+print(f"remove.ycount: {remove_ycount}")
+
+# Set the working directory
+if workdir:
+    os.chdir(workdir)
+
+# Load input data
+with open(design_matrix, "rb") as file:
+    X_matrix = pickle.load(file)
+
+with open("Ycount.pkl", "rb") as file:
+    Ycount = pickle.load(file)
+
+# Parallel configuration
+ncores = multiprocessing.cpu_count()
+nc = min(ncores, core)
+
+# Function definitions
+def fun(crpdat, maxiter_X=5, modify=True):
+    """AEM algorithm estimation function"""
+    xloc = [i for i, col in enumerate(crpdat.columns) if col != "sample1"]
+    X0 = crpdat.iloc[:, xloc].values
+    Ymat = crpdat.iloc[:, [col not in xloc for col in range(len(crpdat.columns))]].values
+    est = aem_algorithm(X0, Ymat, maxiter_X=maxiter_X, modify=modify)
+    return est
+
+def aem_algorithm(X, Y, maxiter_X=5, modify=True):
+    """Placeholder for AEM algorithm logic"""
+    # Implement AEM logic here
+    pass
+
+# Parallel computation of estimates
+X_y = Ycount  # Assuming Ycount is a dictionary or similar structure
+EST = Parallel(n_jobs=nc)(delayed(fun)(X_y[i]) for i in range(len(X_y)))
+
+# Processing the results
+x_all = []
+
+if not merge_paralogs:
+    for i in range(len(X_y)):
+        x1 = EST[i]["X"]
+        x_y = X_y[i]
+        xloc = [col for col in x_y.columns if col != "sample1"]
+        x1.columns = x_y.columns[xloc]
+        x_all.append(x1)
+
+elif merge_paralogs:
+    for i in range(len(X_y)):
+        x1 = EST[i]["X"]
+        x_y = X_y[i]
+        xloc = [col for col in x_y.columns if col != "sample1"]
+        x1.columns = x_y.columns[xloc]
+        try:
+            x_all.append(ccrp_function(x1))
+        except Exception as e:
+            print(f"Error in collapsing paralogs for index {i}: {e}")
+
+# Final processing and saving
+with open(fout, "wb") as file:
+    pickle.dump(x_all, file)
+
+# Clean Ycount if needed
+if remove_ycount:
+    os.remove("Ycount.pkl")
+
+print("\nDone.")
